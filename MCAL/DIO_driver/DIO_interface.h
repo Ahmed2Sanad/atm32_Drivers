@@ -6,6 +6,8 @@
 *   
 */
 
+#include "STD_TYPES.h"
+
 typedef enum
 {
 	DIO_NOK=0;
@@ -59,22 +61,22 @@ typedef enum
 
 
 
-void DIO_voidSetPinDirection(u8 Copy_u8PORT,u8 Cop_u8PIN,u8 Copy_u8Direction);
+DIO_Error_Status DIO_enumSetPinDirection     (u8 Copy_u8PORT,u8 Cop_u8PIN,u8 Copy_u8Direction);
 
-void DIO_voidSetPinValue(u8 Copy_u8PORT,u8 Cop_u8PIN,u8 Copy_u8Value);
+DIO_Error_Status DIO_enumSetPinValue         (u8 Copy_u8PORT,u8 Cop_u8PIN,u8 Copy_u8Value);
 
-u8 DIO_voidGetPinValue(u8 Copy_u8PORT,u8 Cop_u8PIN);
+DIO_Error_Status DIO_enumGetPinValue         (u8 Copy_u8PORT,u8 Cop_u8PIN, u8 *Copy_PtrData);
 
-void DIO_voidTogPinValue(u8 Copy_u8PORT,u8 Copy_u8PIN);
+DIO_Error_Status DIO_enumTogPinValue         (u8 Copy_u8PORT,u8 Copy_u8PIN);
 
 
-void DIO_voidSetPortDirection(u8 Copy_u8PORT,u8 Copy_u8Ditection);
+DIO_Error_Status DIO_enumSetPortDirection    (u8 Copy_u8PORT,u8 Copy_u8Ditection);
 
-void DIO_voidSetPortValue(u8 Copy_u8PORT,u8 Copy_u8Value);
+DIO_Error_Status DIO_enumSetPortValue        (u8 Copy_u8PORT,u8 Copy_u8Value);
 
-u16 DIO_u16GetPortValue(u8 Copy_u8PORT);
+DIO_Error_Status DIO_enumGetPortValue        (u8 Copy_u8PORT,u8 *Copy_PtrData);
 
-void DIO_voidTogPortValue(u8 Copy_u8Port);
+DIO_Error_Status DIO_enumTogPortValue        (u8 Copy_u8Port);
 
 
 
