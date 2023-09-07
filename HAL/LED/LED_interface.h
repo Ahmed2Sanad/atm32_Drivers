@@ -14,8 +14,8 @@
 
 typedef struct 
 {
-	u8 PORT;
-	u8 PIN;
+	u8 Port;
+	u8 Pin;
 	u8 Active_State;
 	
 	
@@ -27,6 +27,11 @@ typedef struct
 // Direction Define
 #define LED_OUTPUT       1
 #define LED_INPUT        0
+
+
+
+
+
 
 // Active Satutes
 #define Active_HiGH      1

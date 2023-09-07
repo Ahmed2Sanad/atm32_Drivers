@@ -6,12 +6,13 @@
 *   
 */
 
-#include "STD_TYPES.h"
+
+
 
 typedef enum
 {
-	DIO_NOK=0;
-	DIO_OK=1;
+	DIO_NOK=0,
+	DIO_OK=1,
 	
 	
 	
@@ -21,9 +22,12 @@ typedef enum
 
 
 
-
 #ifndef  _DIO_INTERFACE_H_H
 #define  _DIO_INTERFACE_H_H
+
+
+#include "STD_TYPES.h"
+
 
 // PORT Direction
 #define DIO_PORT_HIGH       0xff
@@ -60,6 +64,8 @@ typedef enum
 #define   DIO_PIN7          7
 
 
+//#define DIO_OK              1
+//#define DIO_NOK              0
 
 DIO_Error_Status DIO_enumSetPinDirection     (u8 Copy_u8PORT,u8 Cop_u8PIN,u8 Copy_u8Direction);
 

@@ -29,8 +29,7 @@ void LED_voidInit (LED_Type LED_Configration)
 {
 	
 	 
-	DIO_Error_Status DIO_enumSetPinDirection(LED_Configration.PORT, LED_Configration.PIN, LED_OUTPUT);
-	
+	 DIO_enumSetPinDirection  (LED_Configration.Port,LED_Configration.Pin,LED_OUTPUT);
 }
 
 //--------------------------------------------------------------------------------------
@@ -50,12 +49,13 @@ void LED_voiOn (LED_Type LED_Configration)
 	
 	if(LED_Configration.Active_State == Active_HiGH)
 	{
-		DIO_Error_Status DIO_enumSetPinValue(LED_Configration.PORT,  LED_Configration.PIN,  DIO_HIGH);
+		 DIO_enumSetPinValue(LED_Configration.Port,  LED_Configration.Pin,  DIO_HIGH);
+
 	}
 	else if(LED_Configration.Active_State == Active_LOW)
 	{
-	    DIO_Error_Status DIO_enumSetPinValue(LED_Configration.PORT,  LED_Configration.PIN,  DIO_LOW);
 
+	    DIO_enumSetPinValue(LED_Configration.Port,  LED_Configration.Pin,  DIO_LOW);
 	}
 	
 }
@@ -75,13 +75,12 @@ void LED_voidOff (LED_Type LED_Configration)
 {
 	if(LED_Configration.Active_State == Active_HiGH)
 	{
-		
-       DIO_Error_Status DIO_enumSetPinValue(LED_Configration.PORT,  LED_Configration.PIN, DIO_LOW);
+          DIO_enumSetPinValue(LED_Configration.Port,  LED_Configration.Pin,  DIO_LOW);
 	}
 	else if(LED_Configration.Active_State == Active_HiGH)
 	{
 		
-	   DIO_Error_Status DIO_enumSetPinValue(LED_Configration.PORT,  LED_Configration.PIN, DIO_HIGH);
+		 DIO_enumSetPinValue(LED_Configration.Port,  LED_Configration.Pin,  DIO_HIGH);
 	
 	}
 	
@@ -98,8 +97,8 @@ void LED_voidOff (LED_Type LED_Configration)
 
 void LED_voidToggle (LED_Type LED_Configration)
 {
+	    DIO_enumTogPinValue (LED_Configration.Port,  LED_Configration.Pin);
 	
-	DIO_Error_Status DIO_enumTogPinValue(LED_Configration.PORT,  LED_Configration.PIN);
 	
 }
  
