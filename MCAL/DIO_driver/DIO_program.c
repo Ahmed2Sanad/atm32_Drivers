@@ -13,6 +13,8 @@
 #include "DIO_config.h"
 
 
+//-------------------------------------------------------------------------------------------------------
+
 /* Brief : This Function Set The Direction 
  Parameters:
        =>Copy_u8PORT      --> PORT Name(DIO_PORTA ,DIO_PORTB ,DIO_PORTC ,DIO_PORTD)
@@ -65,7 +67,7 @@ DIO_Error_Status DIO_enumSetPinDirection(u8 Copy_u8PORT,u8 Cop_u8PIN,u8 Copy_u8D
 	
 	return LOC_enumState;
 }
-
+//-------------------------------------------------------------------------------------------------------
 
 /* Brief : This Function Set The PIN Value 
  Parameters:
@@ -121,6 +123,7 @@ DIO_Error_Status DIO_enumSetPinValue(u8 Copy_u8PORT,u8 Cop_u8PIN,u8 Copy_u8Value
 	return LOC_enumState;
 }
 
+//-------------------------------------------------------------------------------------------------------
 
 /* Brief : This Function Get The Value of The Pin
  Parameters:
@@ -159,6 +162,8 @@ DIO_Error_Status DIO_enumGetPinValue(u8 Copy_u8PORT,u8 Cop_u8PIN, u8 *Copy_PtrDa
 
 	return LOC_enumState;
 }
+//-------------------------------------------------------------------------------------------------------
+
 /* Brief : This Function Toggle The Value of The Pin
  Parameters:
        =>Copy_u8PORT  --> PORT Name(DIO_PORTA ,DIO_PORTB ,DIO_PORTC ,DIO_PORTD)
@@ -191,7 +196,7 @@ DIO_Error_Status DIO_enumTogPinValue(u8 Copy_u8PORT,u8 Copy_u8PIN)
 	
 }
 
-
+//-------------------------------------------------------------------------------------------------------
 
 /* Brief : This Function SET The PORT Value
  Parameters:
@@ -244,15 +249,15 @@ DIO_Error_Status DIO_enumSetPortValue(u8 Copy_u8PORT,u8 Copy_u8Value)
 	return LOC_enumState;
 }
 
+//-------------------------------------------------------------------------------------------------------
+
+
 /* Brief : This Function Set PORT Direction 
  Parameters:
        =>Copy_u8PORT      --> PORT Name(DIO_PORTA ,DIO_PORTB ,DIO_PORTC ,DIO_PORTD)
        =>Copy_u8Direction --> Data Direction ( DIO_PIN_OUTPUT)/( DIO_PIN_INPUT )  
 	   return Error_Status;
 */
-
-
-
 
 
 DIO_Error_Status DIO_enumSetPortDirection(u8 Copy_u8PORT,u8 Copy_u8Ditection)
@@ -287,6 +292,7 @@ DIO_Error_Status DIO_enumSetPortDirection(u8 Copy_u8PORT,u8 Copy_u8Ditection)
 	return LOC_enumState;
 }
 
+//-------------------------------------------------------------------------------------------------------
 
 /* Brief : This Function Get PORT Value 
  Parameters:
@@ -325,6 +331,7 @@ DIO_Error_Status DIO_enumGetPortValue(u8 Copy_u8PORT,u8 *Copy_PtrData)
 
 }
 
+//-------------------------------------------------------------------------------------------------------
 
 /* Brief : This Function Toggle PORT Value 
  Parameters:
@@ -359,3 +366,85 @@ DIO_Error_Status DIO_enumTogPortValue(u8 Copy_u8Port)
 	
 	return LOC_enumState;
 }
+//------------------------------------------------------------------------------------------------------------
+
+/* Brief : This Function Set Low Nibble 
+ Parameters:
+       =>Copy_u8PORT  --> PORT Name(DIO_PORTA ,DIO_PORTB ,DIO_PORTC ,DIO_PORTD)
+	   =>Copy_u8Value --> max val = 0001111 -> if the val else function will handle it 
+	   return Error_Status;
+*/
+
+
+DIO_Error_Status DIO_enumSetLowNibble (u8 Copy_u8Port,u8 Copy_u8Value)
+{
+	   DIO_Error_Status LOC_enumState=DIO_OK;
+	
+	if(Copy_u8Port <= DIO_PORTD )
+	{
+	
+       	Copy_u8Value &= 0x0f;
+		
+		switch(Copy_u8Port)
+		{
+			Copy_u8Port &= 0xf0 ;
+			
+			case DIO_PORTA : PORTA |= Copy_u8Value;break;
+			case DIO_PORTB : PORTB |= Copy_u8Value;break;
+			case DIO_PORTC : PORTC |= Copy_u8Value;break;
+			case DIO_PORTD : PORTD |= Copy_u8Value;break;
+		
+		}
+
+	}
+	else
+	{
+		LOC_enumState=DIO_NOK;
+	
+	}
+
+	return LOC_enumState;
+}
+
+//----------------------------------------------------------------------------------------------------------
+
+/* Brief : This Function Set High Nibble 
+ Parameters:
+       =>Copy_u8PORT  --> PORT Name(DIO_PORTA ,DIO_PORTB ,DIO_PORTC ,DIO_PORTD)
+	   =>Copy_u8Value --> max val = 1111 -> if the val else function will handle it 
+	   return Error_Status;
+*/
+
+
+DIO_Error_Status DIO_enumSetHighNibble (u8 Copy_u8Port,u8 Copy_u8Value)
+{
+	   DIO_Error_Status LOC_enumState=DIO_OK;
+	
+	if(Copy_u8Port <= DIO_PORTD )
+	{
+	
+       	Copy_u8Value << 4 ; // 1010 << 4 -> 10100000
+		
+		switch(Copy_u8Port)
+		{
+			Copy_u8Port &= 0x0f ;
+			
+			case DIO_PORTA : PORTA |= Copy_u8Value;break;
+			case DIO_PORTB : PORTB |= Copy_u8Value;break;
+			case DIO_PORTC : PORTC |= Copy_u8Value;break;
+			case DIO_PORTD : PORTD |= Copy_u8Value;break;
+		
+		}
+
+	}
+	else
+	{
+		LOC_enumState=DIO_NOK;
+	
+	}
+
+	return LOC_enumState;
+}
+
+
+//-------------------------------------------------------------------------------------------------------

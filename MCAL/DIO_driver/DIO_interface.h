@@ -84,8 +84,9 @@ DIO_Error_Status DIO_enumGetPortValue        (u8 Copy_u8PORT,u8 *Copy_PtrData);
 
 DIO_Error_Status DIO_enumTogPortValue        (u8 Copy_u8Port);
 
+DIO_Error_Status DIO_enumSetLowNibble        (u8 Copy_u8Port,u8 Copy_u8Value);
 
-
+DIO_Error_Status DIO_enumSetHighNibble       (u8 Copy_u8Port,u8 Copy_u8Value);
 
 
 
