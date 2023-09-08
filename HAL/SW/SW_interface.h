@@ -39,6 +39,20 @@ typedef struct
 #define SW_RES_HIGH          1
 #define SW_RES_LOW           0
 
+
+
+
+
+
+
+u8    SW_u8GetPressed ( SW_Data Confiqration_Switch )
+void  SW_voidInit     ( SW_Data Confiqration_Switch )
+
+
+
+
+
+
 #endif
 
 
