@@ -448,3 +448,110 @@ DIO_Error_Status DIO_enumSetHighNibble (u8 Copy_u8Port,u8 Copy_u8Value)
 
 
 //-------------------------------------------------------------------------------------------------------
+
+/* Brief : This Function Enable PULL_UP in spacefic pin in any port
+ Parameters:
+       =>Copy_u8PORT  --> PORT Name(DIO_PORTA ,DIO_PORTB ,DIO_PORTC ,DIO_PORTD)
+	   =>Cop_u8PIN    --> PIN Name(DIO_PIN0,...........................,DIO_PIN7)
+	   return Error_Status;
+*/
+
+
+
+DIO_Error_Status DIO_enumEnablPullUp (u8 Copy_u8Port,u8 Copy_u8Pin,u8 Copy_u8EnablePullup)
+{
+	 DIO_Error_Status LOC_enumState=DIO_OK;
+	
+    if((Copy_u8PORT<=DIO_PORTD)&&(Cop_u8PIN<=DIO_PIN7 ))	
+    {
+       switch(Copy_u8Port)
+	   {
+	     case DIO_PORTA:
+		 
+		        if(Copy_u8EnablePullup == DIO_PIN_HIGH )
+				{
+					CLR_BIT(SFIOR,DIO_PUD) ;
+					CLR_BIT(DDRA ,Copy_u8Pin) ;
+					SET_BIT(PORTA,Copy_u8Pin);
+				}
+				else
+				{
+					CLR_BIT(PORTA ,Copy_u8Pin); 
+				}
+				break;
+		 
+		 case DIO_PORTB:
+		 
+		        if(Copy_u8EnablePullup == DIO_PIN_HIGH )
+				{
+					CLR_BIT(SFIOR,DIO_PUD) ;
+					CLR_BIT(DDRB ,Copy_u8Pin); 
+					SET_BIT(PORTB,Copy_u8Pin);
+				}
+				else
+				{
+					CLR_BIT(PORTB ,Copy_u8Pin); 
+				}
+				break;
+		 
+		 case DIO_PORTC:
+		 
+		        if(Copy_u8EnablePullup == DIO_PIN_HIGH )
+				{
+					CLR_BIT(SFIOR,DIO_PUD) ;
+					CLR_BIT(DDRC ,Copy_u8Pin) ;
+					SET_BIT(PORTC,Copy_u8Pin);
+				}
+				else
+				{
+					CLR_BIT(PORTC ,Copy_u8Pin) ;
+				}
+				break;
+		 
+		 
+		 case DIO_PORTD:
+		 
+		        if(Copy_u8EnablePullup == DIO_PIN_HIGH )
+				{
+					CLR_BIT(SFIOR,DIO_PUD) ;
+					CLR_BIT(DDRD ,Copy_u8Pin) ;
+					SET_BIT(PORTD,Copy_u8Pin);
+				}
+				else
+				{
+					CLR_BIT(PORTD ,Copy_u8Pin); 
+				}
+				break;
+		 
+	   }
+	}
+	else
+	{
+		LOC_enumState=DIO_NOK;
+		
+	}
+
+	return LOC_enumState
+	
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+
+/* Brief : This Function Disable PULL_UP in all PORTS
+ 
+ Parameters: void
+    return : void
+*/
+
+
+void DIO_voidDisablPullUp (void)
+{
+	DIO_enumSetPinValue(SFIOR, DIO_PUD, DIO_PIN_LOW);
+	
+}
+
+
+//--------------------------------------------------------------------------------------------------------------------
+
+
+

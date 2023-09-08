@@ -63,9 +63,13 @@ typedef enum
 #define   DIO_PIN6          6
 #define   DIO_PIN7          7
 
+//define PIN2 (PUD) in SFIOR Reg 
+#define   DIO_PUD           2
 
-//#define DIO_OK              1
-//#define DIO_NOK              0
+
+
+  
+
 
 DIO_Error_Status DIO_enumSetPinDirection     (u8 Copy_u8PORT,u8 Cop_u8PIN,u8 Copy_u8Direction);
 
@@ -88,6 +92,7 @@ DIO_Error_Status DIO_enumSetLowNibble        (u8 Copy_u8Port,u8 Copy_u8Value);
 
 DIO_Error_Status DIO_enumSetHighNibble       (u8 Copy_u8Port,u8 Copy_u8Value);
 
+DIO_Error_Status DIO_enumEnablPullUp         (u8 Copy_u8Port,u8 Copy_u8Pin);
 
 
 

@@ -37,5 +37,11 @@
 
 
 
+//Access PUD in SFIOR Reg TO disable Internal Pull Up
+#define  SFIOR     *((volatile u8*)0x50)
+
+
+
+
 
 #endif
