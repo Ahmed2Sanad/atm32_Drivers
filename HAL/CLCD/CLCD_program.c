@@ -105,7 +105,7 @@ void CLCD_voidSendCommand          (u8 Copy_U8Command)
 	 
 	// this like func of send data but the onlu difference between them in RS(TO send commend make it 0)
 
-	DIO_enumSetPortValue(CLCD_DATA_PORT, Copy_U8Data);
+	 DIO_enumSetPortValue(CLCD_DATA_PORT, Copy_U8Command);
 	 
 	 DIO_enumSetPinValue (CLCD_CONTROL_PORT,CLCD_RS,CLCD_PIN_LOW);
 	 DIO_enumSetPinValue (CLCD_CONTROL_PORT,CLCD_RW,CLCD_PIN_LOW);
@@ -192,7 +192,88 @@ void CLCD_voidSendString (const u8 *Copy_U8PtrSting[])
 	
 }  
 
+//----------------------------------------------------------------------------------------------------------------
 
 
 
 
+/* Brief : This Function for setting cursor on display using DDRAM REG 
+ Parameters: 
+            => Copy_u8ROW -> ROW_1 , ROW_2 
+            => Copy_u8COL -> COL_1..................................COL_16                
+	 return   void
+
+                   	 
+*/
+
+
+
+void CLCD_voidSetPosition (u8 Copy_u8ROW,  u8 Copy_u8COL    )
+{
+	  u8 LOC_u8data;
+	
+	if(Copy_u8ROW>2 || Copy_u8ROW<1 || Copy_u8COL>16 || Copy_u8COL <1)
+	{
+		
+		LOC_u8data= lcd_SetCursor ;
+		
+		
+	}
+	else if (Copy_u8ROW == CLCD_ROW_1)
+	{
+		
+		LOC_u8data = lcd_SetCursor + (Copy_u8COL-1);
+		
+		
+	}
+	else if (Copy_u8ROW == CLCD_ROW_2)
+	{
+		
+		LOC_u8data = lcd_SetCursor + 64+ (Copy_u8COL-1);
+		
+		
+	}
+	 CLCD_voidSendCommand(LOC_u8data);
+	   _delay_ms(1);
+	
+	
+	
+	
+} 
+
+
+
+
+
+//----------------------------------------------------------------------------------------------------------------
+
+
+
+void CLCD_voidCreateExtraChar(u8 Copy_u8ROW,  u8 Copy_u8COL )
+{
+	u8 LOC_Iterator=0;
+	LCD_voidSendCommand(lcd_CGRAM);
+	
+	
+	
+	for(LOC_Iterator=0;LOC_Iterator<sizeof(CLCD_CreateChar)/sizeof(CLCD_CreateChar[LOC_Iterator];LOC_Iterator)
+	{
+		  CLCD_voidSendData(CLCD_CreateChar[LOC_Iterator]);
+	
+	}
+
+	
+	CLCD_voidSetPosition (u8 Copy_u8ROW,  u8 Copy_u8COL);
+	
+	
+	for(LOC_Iterator=0;LOC_Iterator<8;LOC_Iterator++)
+	{
+		 CLCD_voidSendData(LOC_Iterator);
+		
+	}
+	
+}
+
+
+
+//------------------------------------------------------------------------------------------------------------------

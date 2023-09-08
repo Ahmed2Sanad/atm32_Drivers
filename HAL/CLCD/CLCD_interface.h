@@ -51,15 +51,44 @@
 #define CLCD_PIN_INPUT       0
   
   
-#define CLCD_PIN_HIGH       1
-#define CLCD_PIN_LOW        0
-  
+#define CLCD_PIN_HIGH        1
+#define CLCD_PIN_LOW         0
+
+
+
+#define   CLCD_ROW_1           1
+#define   CLCD_ROW_2           2
+                             
+                             
+                             
+                             
+//defin   COL                              
+#define   CLCD_COL_1         1
+#define   CLCD_COL_2         2
+#define   CLCD_COL_3         3
+#define   CLCD_COL_4         4
+#define   CLCD_COL_5         5
+#define   CLCD_COL_6         6
+#define   CLCD_COL_7         7
+#define   CLCD_COL_8         8
+#define   CLCD_COL_9         9
+#define   CLCD_COL_10        10
+#define   CLCD_COL_11        11
+#define   CLCD_COL_12        12
+#define   CLCD_COL_13        13
+#define   CLCD_COL_14        14
+#define   CLCD_COL_15        15
+#define   CLCD_COL_16        16
+
+ 
   
 void CLCD_voidInit                 (void                       );
 void CLCD_voidSendData             (u8 Copy_U8Data             );  
 void CLCD_voidSendCommand          (u8 Copy_U8Command          );  
 void CLCD_voidClearScreen          (void                       );  
   
-CLCD_voidSendString                (const u8 *Copy_U8PtrSting[]);  
-  
+void CLCD_voidSendString           (const u8 *Copy_U8PtrSting[]);  
+ 
+void CLCD_voidSetPosition          (u8 CLCD_ROW,u8 CLCD_COL    ); 
+ 
 #endif  
